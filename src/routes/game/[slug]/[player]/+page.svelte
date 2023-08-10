@@ -11,21 +11,24 @@
   import Clock from "$lib/components/Clock.svelte";
 </script>
 
-<div class="container">
+<div>
   <Banner/>
   {#if $players?.length > 0}
   <div class="flex flex-row">
 
-    <div>
+    <div class="">
       <ActionArea/>
+      
+    </div>
+
+    <SVG>
+      <Defs/>
+      <Map/>
+    </SVG>
+    <div>
       <PlayerArea/>
       <Clock/>
     </div>
-
-  <SVG>
-    <Defs/>
-    <Map/>
-  </SVG>
   </div>
   {:else}
   <div>Loading...</div>
