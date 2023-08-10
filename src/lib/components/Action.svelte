@@ -88,7 +88,18 @@
 
 <div class="flex flex-row drop-shadow-lg bg-theme-400 border-2 border-theme-700 my-1">
   <div class:-rotate-12={name == "vroom"} class="w-20 flex items-center justify-center text-white text-sm text-center font-bold bg-theme-700">
-    {prettyName}
+    {#if name == "vroom"}
+      <svg viewBox="0 0 425 300">
+        <path id="curve" d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145" />
+        <text x="25">
+          <textPath xlink:href="#curve">
+            Vrooooooooooom
+          </textPath>
+        </text>
+      </svg>
+    {:else}
+      {prettyName}
+    {/if}
   </div>
   <div on:click={handleClick} class="flex" class:flex-row-reverse={reverse}>
     {#each spaces as space, i}
@@ -111,3 +122,14 @@
   <p class="bg-yellow-400"></p>
   <p class="bg-red-400"></p>
 </div>
+
+<style>
+  path {
+    fill: transparent;
+  }
+
+  text {
+    fill: white;
+    font-size: 4rem;
+  }
+</style>

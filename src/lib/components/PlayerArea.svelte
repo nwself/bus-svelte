@@ -1,11 +1,13 @@
 <script>
   import { page } from '$app/stores';
-  import { websocket, players, playerDB, activePlayer, phase, maxBuses } from '$lib/stores/game.js';
+  import { websocket, players, playerDB, activePlayer, phase, maxBuses, gameTime } from '$lib/stores/game.js';
   import PassButton from "$lib/components/PassButton.svelte";
+  import StopTimeButton from "$lib/components/StopTimeButton.svelte";
 </script>
 
 <div class="flex flex-col ml-8">
   <p class="mb-3">{ $phase } (max-buses: { $maxBuses })</p>
+  <p class="mb-3">Passengers are headed to <strong>{ $gameTime }</strong></p>
 
   <h1>Player Area</h1>
   {#each $players as player}
@@ -19,6 +21,10 @@
 
   {#if $playerDB}
   <PassButton player={$playerDB[$page.params.player]}/>
+  {/if}
+
+  {#if $page.params.player == $activePlayer && $phase == "stop-time"}
+    <StopTimeButton player={$playerDB[$page.params.player]}/>
   {/if}
 </div>
 

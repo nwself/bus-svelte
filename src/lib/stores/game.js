@@ -4,7 +4,7 @@ import websocketStore from "svelte-websocket-store";
 export const game = writable({"slug": "abc", "phase": "place-workers", "activePlayer": "tripswithtires", "players": {"tripswithtires": {"name": "tripswithtires", "workers": 21, "canPass": false, "workersUsedThisPhase": 0, "passed": false, "roads": [3], "canRoad": [32, 1, 2, 4, 25, 42, 30], "startNode": 1, "endNode": 3, "busCount": 1, "timeyWimeys": 0, "hasFirstPlayerToken": true}, "piestastedgood": {"name": "piestastedgood", "workers": 21, "canPass": false, "workersUsedThisPhase": 0, "passed": false, "roads": [], "canRoad": [], "startNode": null, "endNode": null, "busCount": 1, "timeyWimeys": 0, "hasFirstPlayerToken": false}}, "workerAreas": {"build-road": {"name": "build-road", "size": 6, "workers": [], "done": false}, "new-bus": {"name": "new-bus", "size": 1, "workers": [], "done": false}, "more-people": {"name": "more-people", "size": 6, "workers": [], "done": false}, "new-buildings": {"name": "new-buildings", "size": 6, "workers": [], "done": false}, "stop-time": {"name": "stop-time", "size": 1, "workers": [], "done": false}, "vroom": {"name": "vroom", "size": 6, "workers": [], "done": false}, "first-player": {"name": "first-player", "size": 1, "workers": [], "done": false}}, "timeyWimeys": 5, "time": "work"});
 
 
-export const websocket = websocketStore("ws://localhost:8000/ws/game/abcdef/", {});
+export const websocket = websocketStore("ws://localhost:8000/ws/game/bar/", {});
 export const players = derived(websocket, $websocket => {
   console.log("Hey the websocket is awake", $websocket);
   return $websocket.players ? Object.values($websocket.players): []
@@ -16,6 +16,7 @@ export const playerDB = derived(websocket, $websocket => {
 
 export const activePlayer = derived(websocket, $websocket => $websocket.activePlayer);
 export const phase = derived(websocket, $websocket => $websocket.phase);
+export const gameTime = derived(websocket, $websocket => $websocket.time);
 export const maxBuses = derived(websocket, $websocket => $websocket.maxBuses);
 export const workerAreas = derived(websocket, $websocket => $websocket.workerAreas);
 
