@@ -15,14 +15,18 @@
   <Banner/>
   {#if $players?.length > 0}
   <div class="flex flex-row">
-    <ActionArea/>
-    <PlayerArea/>
-    <Clock/>
-  </div>
+
+    <div>
+      <ActionArea/>
+      <PlayerArea/>
+      <Clock/>
+    </div>
+
   <SVG>
     <Defs/>
     <Map/>
   </SVG>
+  </div>
   {:else}
   <div>Loading...</div>
   {/if}
